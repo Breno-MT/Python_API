@@ -73,5 +73,7 @@ def read_csv_pd():
 
     print(df.to_string()) 
 
+
 insert_data_in_csv()
+
 read_csv_pd()
