@@ -1,4 +1,5 @@
 import requests
+import pandas as pd
 
 # This is a study that you're making. It's to be based on BigDataCorp's company.
 BASE_URI = "https://random-data-api.com/api/v2/"
@@ -16,23 +17,45 @@ BASE_URI = "https://random-data-api.com/api/v2/"
 # Blood Types - /blood_types
 # Credit Cards - /credit_cards
 
-query_1_person = requests.get(f"{BASE_URI}/users?is_json=true")
-query_json = query_1_person.json()
 
-user_random = {
-    "first_name": query_json["first_name"],
-    "last_name": query_json["last_name"],
-    "username": query_json["username"],
-    "email": query_json["email"],
-    "password": query_json["password"]
-}
+def get_users_information():
+    print("Getting users informations...")
 
-print(F"""
-        ! INFO ABOUT THE USER ! 
-        -----------------------
-        [@] First Name: {user_random.get("first_name")}
-        [@] Last Name: {user_random.get("last_name")}
-        [@] Username: {user_random.get("username")}
-        [@] Email: {user_random.get("email")}
-        [@] Password: {user_random.get("password")}
-""")
+    query_users = requests.get(f"{BASE_URI}/users?size=100?is_json=true")
+
+    query_json = query_users.json()
+
+    user_list = []
+
+    for user in query_json:
+
+        user_random = {
+            "ID": user.get("id"),
+            "Nome": user.get("first_name"),
+            "Sobrenome": user.get("last_name"),
+            "Usuário": user.get("username"),
+            "Email": user.get("email"),
+            "Senha": user.get("password")
+        }
+
+        user_list.append(user_random)
+
+    print("Done getting users informations.")
+
+    return user_list
+
+
+def insert_data_in_csv():
+    try:
+        user_information = get_users_information()
+
+        df = pd.DataFrame(user_information)
+
+        df.to_csv("users_informations.csv", index=False)
+
+        print("CSV created")
+    
+    except Exception as err:
+        print("Error: ", err)
+
+insert_data_in_csv()
