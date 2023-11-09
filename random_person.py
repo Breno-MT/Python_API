@@ -33,9 +33,18 @@ def get_users_information():
             "ID": user.get("id"),
             "Nome": user.get("first_name"),
             "Sobrenome": user.get("last_name"),
-            "Usuário": user.get("username"),
+            "Usuario": user.get("username"),
             "Email": user.get("email"),
-            "Senha": user.get("password")
+            "Senha": user.get("password"),
+            "Foto": user.get("avatar"),
+            "Data de Nascimento": user.get("date_of_birth"),
+            "Cartao de Credito": user.get("credit_card").get("cc_number"),
+            "Cidade": user.get("address").get("city"),
+            "Endereco": user.get("address").get("street_address"),
+            "CEP": user.get("address").get("zip_code"),
+            "Estado": user.get("address").get("state"),
+            "Pais": user.get("address").get("country")
+
         }
 
         user_list.append(user_random)
