@@ -67,4 +67,11 @@ def insert_data_in_csv():
     except Exception as err:
         print("Error: ", err)
 
+
+def read_csv_pd():
+    df = pd.read_excel('read_csv.csv')
+
+    print(df.to_string()) 
+
 insert_data_in_csv()
+read_csv_pd()
