@@ -69,9 +69,9 @@ def insert_data_in_csv():
 
 
 def read_csv_pd():
-    df = pd.read_excel('read_csv.csv')
+    df = pd.read_csv("users_informations.csv")
 
-    print(df.to_string()) 
+    print(df) 
 
 
 insert_data_in_csv()
