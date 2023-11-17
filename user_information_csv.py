@@ -43,8 +43,8 @@ def get_users_information():
             "Endereco": user.get("address").get("street_address"),
             "CEP": user.get("address").get("zip_code"),
             "Estado": user.get("address").get("state"),
-            "Pais": user.get("address").get("country")
-
+            "Pais": user.get("address").get("country"),
+            "Profissão": user.get("employment").get("title")
         }
 
         user_list.append(user_random)
