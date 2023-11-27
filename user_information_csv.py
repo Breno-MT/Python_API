@@ -1,3 +1,4 @@
+import random
 import requests
 import pandas as pd
 
@@ -16,6 +17,9 @@ BASE_URI = "https://random-data-api.com/api/v2/"
 # Beers - /beers
 # Blood Types - /blood_types
 # Credit Cards - /credit_cards
+
+def generate_random_wage():
+    return f"R${random.uniform(200, 50000.12):.2f}"
 
 
 def get_users_information():
@@ -44,7 +48,8 @@ def get_users_information():
             "CEP": user.get("address").get("zip_code"),
             "Estado": user.get("address").get("state"),
             "Pais": user.get("address").get("country"),
-            "Profissão": user.get("employment").get("title")
+            "Profissão": user.get("employment").get("title"),
+            "Salário": generate_random_wage(),
         }
 
         user_list.append(user_random)
