@@ -19,7 +19,7 @@ BASE_URI = "https://random-data-api.com/api/v2/"
 # Credit Cards - /credit_cards
 
 def generate_random_wage():
-    return f"R${random.uniform(200, 50000.12):.2f}"
+    return round(random.uniform(200, 50000.12), 2)
 
 
 def get_users_information():
@@ -49,7 +49,7 @@ def get_users_information():
             "Estado": user.get("address").get("state"),
             "Pais": user.get("address").get("country"),
             "Profissão": user.get("employment").get("title"),
-            "Salário": generate_random_wage(),
+            "Salário (R$)": generate_random_wage(),
         }
 
         user_list.append(user_random)
